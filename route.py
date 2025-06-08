@@ -9,7 +9,6 @@ ctl = Application()
 
 #-----------------------------------------------------------------------------
 # Rotas:
-
 @app.route('/static/<filepath:path>')
 def serve_static(filepath):
     return static_file(filepath, root='./app/static')
@@ -21,6 +20,9 @@ def helper(info= None):
 
 #-----------------------------------------------------------------------------
 # Suas rotas aqui:
+@app.route('/denuncias', methods=['GET'])
+def denuncias():
+    return ctl.render('denuncias')
 
 
 
