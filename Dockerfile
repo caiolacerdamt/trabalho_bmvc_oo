@@ -2,7 +2,9 @@
 FROM python:3.12-slim
 
 # Definir o diretório de trabalho
-WORKDIR /bmeta
+WORKDIR /app
+
+COPY . . 
 
 # Atualizar o pip e instalar as bibliotecas necessárias
 RUN pip install --upgrade pip && \
@@ -12,5 +14,5 @@ RUN pip install --upgrade pip && \
 EXPOSE 8080
 
 # Comando para executar a aplicação
-CMD ["python3", "route.py"]
+CMD ["python", "route.py"]
 

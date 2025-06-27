@@ -1,0 +1,223 @@
+/* CSS específico para a página de detalhes da denúncia */
+
+/* Detalhes da denúncia - Clean e fundo branco */
+.denuncia-detalhes {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 60vh;
+}
+
+.card-denuncia-completo {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    border: 1px solid #eee;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding-bottom: 1rem;
+}
+
+.header-detalhes {
+    padding: 1.5rem 2rem 1rem 2rem;
+    background: #fff;
+    color: #222;
+    text-align: center;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.header-detalhes h2 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.header-detalhes .status {
+    display: inline-block;
+    margin-top: 0.5rem;
+}
+
+.info-denuncia {
+    padding: 1.5rem 2rem;
+}
+
+.campo-info {
+    margin-bottom: 1.2rem;
+    padding: 1rem;
+    background: #fafafa;
+    border-radius: 6px;
+    border-left: 4px solid #2176ae;
+}
+
+.campo-info strong {
+    display: block;
+    color: #222;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    font-weight: 700;
+}
+
+.campo-info span, .campo-info p {
+    color: #444;
+    line-height: 1.5;
+    font-size: 1rem;
+}
+
+.campo-info p {
+    margin-top: 0.3rem;
+    padding: 0.3rem 0;
+    background: none;
+    border-radius: 0;
+    border-left: none;
+}
+
+.acoes-denuncia {
+    padding: 1.2rem 2rem 0 2rem;
+    background: #fff;
+    border-top: 1px solid #f0f0f0;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Efeitos especiais para diferentes tipos de denúncia */
+.campo-info.tipo-iluminacao {
+    border-left-color: #f39c12;
+}
+
+.campo-info.tipo-iluminacao::before {
+    background: linear-gradient(45deg, #f39c12, #e67e22);
+}
+
+.campo-info.tipo-buraco {
+    border-left-color: #e74c3c;
+}
+
+.campo-info.tipo-buraco::before {
+    background: linear-gradient(45deg, #e74c3c, #c0392b);
+}
+
+.campo-info.tipo-lixo {
+    border-left-color: #8e44ad;
+}
+
+.campo-info.tipo-lixo::before {
+    background: linear-gradient(45deg, #8e44ad, #9b59b6);
+}
+
+.campo-info.tipo-drenagem {
+    border-left-color: #3498db;
+}
+
+.campo-info.tipo-drenagem::before {
+    background: linear-gradient(45deg, #3498db, #2980b9);
+}
+
+.campo-info.tipo-arvore {
+    border-left-color: #27ae60;
+}
+
+.campo-info.tipo-arvore::before {
+    background: linear-gradient(45deg, #27ae60, #2ecc71);
+}
+
+/* Responsividade para detalhes */
+@media (max-width: 768px) {
+    .denuncia-detalhes {
+        min-height: auto;
+        padding: 1rem;
+    }
+    .card-denuncia-completo {
+        margin: 0;
+    }
+    .header-detalhes {
+        padding: 1rem;
+    }
+    .header-detalhes h2 {
+        font-size: 1.1rem;
+    }
+    .info-denuncia {
+        padding: 1rem;
+    }
+    .campo-info {
+        padding: 0.7rem;
+        margin-bottom: 0.7rem;
+    }
+    .acoes-denuncia {
+        padding: 1rem 1rem 0 1rem;
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-detalhes {
+        padding: 1rem;
+    }
+    
+    .header-detalhes h2 {
+        font-size: 1.3rem;
+    }
+    
+    .info-denuncia {
+        padding: 1rem;
+    }
+    
+    .campo-info {
+        padding: 0.75rem;
+    }
+    
+    .campo-info strong {
+        font-size: 1rem;
+    }
+    
+    .campo-info span, .campo-info p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Animações específicas para detalhes */
+@keyframes slideInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.campo-info {
+    animation: slideInFromLeft 0.6s ease-out;
+}
+
+.campo-info:nth-child(1) { animation-delay: 0.1s; }
+.campo-info:nth-child(2) { animation-delay: 0.2s; }
+.campo-info:nth-child(3) { animation-delay: 0.3s; }
+.campo-info:nth-child(4) { animation-delay: 0.4s; }
+
+/* Efeito de destaque no hover */
+.card-denuncia-completo:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+}
+
+/* Indicador de prioridade baseado no status */
+.campo-info.prioridade-alta {
+    border-left-color: #e74c3c;
+    background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
+}
+
+.campo-info.prioridade-media {
+    border-left-color: #f39c12;
+    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+}
+
+.campo-info.prioridade-baixa {
+    border-left-color: #27ae60;
+    background: linear-gradient(135deg, #f0fff4 0%, #c6f6d5 100%);
+} 

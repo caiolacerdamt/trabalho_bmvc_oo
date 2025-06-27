@@ -1,0 +1,180 @@
+/* CSS Base - Clean e fundo branco */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background: #fff;
+    color: #222;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background: #222;
+    color: #fff;
+    padding: 1.2rem 2rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+
+header h1 {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    transition: background 0.2s;
+}
+
+nav a:hover {
+    background: #f5f5f5;
+    color: #222;
+}
+
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    flex: 1;
+    width: 100%;
+}
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    background: #222;
+    color: #fff;
+    margin-top: auto;
+    width: 100%;
+    font-size: 1rem;
+}
+
+.btn-ver, .btn-editar, .btn-criar, .btn-atualizar, .btn-cancelar, .btn-excluir, .btn-voltar {
+    padding: 0.7rem 1.3rem;
+    border: none;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    display: inline-block;
+    text-align: center;
+    min-width: 90px;
+}
+
+.btn-ver {
+    background: #2176ae;
+    color: #fff;
+}
+.btn-editar {
+    background: #f4b942;
+    color: #fff;
+}
+.btn-criar, .btn-atualizar {
+    background: #2e7d4f;
+    color: #fff;
+}
+.btn-cancelar, .btn-voltar {
+    background: #b0b0b0;
+    color: #fff;
+}
+.btn-excluir {
+    background: #e74c3c;
+    color: #fff;
+}
+.btn-ver:hover, .btn-editar:hover, .btn-criar:hover, .btn-atualizar:hover, .btn-cancelar:hover, .btn-excluir:hover, .btn-voltar:hover {
+    background: #222;
+    color: #fff;
+}
+
+.status {
+    padding: 0.2rem 0.8rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    background: #f5f5f5;
+    color: #666;
+    border: 1px solid #eee;
+}
+.status.em-analise { background: #fffbe6; color: #b59f3b; border-color: #f5e9b2; }
+.status.em-andamento { background: #eaf6ff; color: #2176ae; border-color: #b7d8f6; }
+.status.resolvido { background: #e6f9ed; color: #2e7d4f; border-color: #b2e2c7; }
+
+@media (max-width: 768px) {
+    header {
+        padding: 1rem;
+    }
+    header h1 {
+        font-size: 1.5rem;
+    }
+    nav ul {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .btn-ver, .btn-editar, .btn-criar, .btn-atualizar, .btn-cancelar, .btn-excluir, .btn-voltar {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    main {
+        padding: 0 0.5rem;
+        margin: 1rem auto;
+    }
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #3498db, #2ecc71);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #2980b9, #27ae60);
+} 
