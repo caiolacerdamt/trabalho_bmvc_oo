@@ -1,21 +1,3 @@
-# -*- coding: utf-8 -*-
-import sys
-import locale
-
-if sys.platform.startswith('win'):
-    try:
-        locale.setlocale(locale.LC_ALL, 'Portuguese_Brazil.1252')
-    except:
-        try:
-            locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
-        except:
-            pass
-else:
-    try:
-        locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
-    except:
-        pass
-
 from bottle import template, redirect, request
 from app.controllers.datarecord import DataRecord
 
@@ -45,7 +27,6 @@ class Application():
     def denuncias(self):
         todas_denuncias = self.models.read_all()
         
-        # Contadores de status
         contadores = {
             'em_analise': 0,
             'em_andamento': 0,
@@ -53,7 +34,6 @@ class Application():
         }
         
         for denuncia in todas_denuncias:
-            # Normalizar status removendo acentos e espaços
             status_normalizado = denuncia.status.lower()
             status_normalizado = status_normalizado.replace(' ', '_')
             status_normalizado = status_normalizado.replace('á', 'a').replace('ã', 'a')
