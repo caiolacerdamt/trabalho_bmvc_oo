@@ -148,7 +148,6 @@ footer {
     }
 }
 
-/* Animações */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -160,7 +159,6 @@ footer {
     }
 }
 
-/* Scrollbar personalizada */
 ::-webkit-scrollbar {
     width: 8px;
 }

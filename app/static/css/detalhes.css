@@ -1,223 +1,259 @@
-/* CSS específico para a página de detalhes da denúncia */
 
-/* Detalhes da denúncia - Clean e fundo branco */
 .denuncia-detalhes {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 60vh;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
 }
 
 .card-denuncia-completo {
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-    border: 1px solid #eee;
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-    padding-bottom: 1rem;
+    background-color: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 .header-detalhes {
-    padding: 1.5rem 2rem 1rem 2rem;
-    background: #fff;
-    color: #222;
+    padding: 3rem 2.5rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border-bottom: 1px solid #e5e5e5;
     text-align: center;
-    border-bottom: 1px solid #f0f0f0;
+    position: relative;
 }
 
 .header-detalhes h2 {
-    font-size: 1.4rem;
-    margin-bottom: 0.5rem;
+    font-size: 2rem;
     font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
 }
 
 .header-detalhes .status {
     display: inline-block;
-    margin-top: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 1rem;
+}
+
+.status.em-analise {
+    background-color: #FFF3CD;
+    color: #856404;
+}
+
+.status.em-andamento {
+    background-color: #D1ECF1;
+    color: #0C5460;
+}
+
+.status.resolvido {
+    background-color: #D4EDDA;
+    color: #155724;
 }
 
 .info-denuncia {
-    padding: 1.5rem 2rem;
+    padding: 3rem 2.5rem;
 }
 
 .campo-info {
-    margin-bottom: 1.2rem;
-    padding: 1rem;
-    background: #fafafa;
-    border-radius: 6px;
-    border-left: 4px solid #2176ae;
+    margin-bottom: 2.5rem;
+    padding: 2rem;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    border-left: 4px solid #007AFF;
+    transition: all 0.2s ease;
+}
+
+.campo-info:hover {
+    background-color: #f8f9fa !important;
+    transform: none !important;
+    box-shadow: none !important;
+    cursor: default !important;
+}
+
+.campo-info:last-child {
+    margin-bottom: 0;
 }
 
 .campo-info strong {
     display: block;
-    color: #222;
-    font-size: 1rem;
-    margin-bottom: 0.3rem;
+    color: #1a1a1a;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 1rem;
     font-weight: 700;
 }
 
-.campo-info span, .campo-info p {
-    color: #444;
-    line-height: 1.5;
-    font-size: 1rem;
+.campo-info span {
+    color: #333;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    font-weight: 500;
 }
 
 .campo-info p {
-    margin-top: 0.3rem;
-    padding: 0.3rem 0;
-    background: none;
-    border-radius: 0;
-    border-left: none;
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-top: 0.5rem;
+    white-space: pre-wrap;
 }
 
 .acoes-denuncia {
-    padding: 1.2rem 2rem 0 2rem;
-    background: #fff;
-    border-top: 1px solid #f0f0f0;
+    padding: 2.5rem;
+    background-color: #fafafa;
+    border-top: 1px solid #e5e5e5;
     display: flex;
     gap: 1rem;
     justify-content: center;
     flex-wrap: wrap;
 }
 
-/* Efeitos especiais para diferentes tipos de denúncia */
-.campo-info.tipo-iluminacao {
-    border-left-color: #f39c12;
+.acoes-denuncia .btn-editar,
+.acoes-denuncia .btn-excluir,
+.acoes-denuncia .btn-voltar {
+    padding: 0.875rem 2rem;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 170px;
+    height: 48px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-sizing: border-box;
 }
 
-.campo-info.tipo-iluminacao::before {
-    background: linear-gradient(45deg, #f39c12, #e67e22);
+.acoes-denuncia .btn-editar {
+    background-color: #34C759;
+    color: #ffffff;
 }
 
-.campo-info.tipo-buraco {
-    border-left-color: #e74c3c;
+.acoes-denuncia .btn-excluir {
+    background-color: #FF3B30;
+    color: #ffffff;
 }
 
-.campo-info.tipo-buraco::before {
-    background: linear-gradient(45deg, #e74c3c, #c0392b);
+.acoes-denuncia .btn-voltar {
+    background-color: #8E8E93;
+    color: #ffffff;
 }
 
-.campo-info.tipo-lixo {
-    border-left-color: #8e44ad;
+.acoes-denuncia .btn-editar:hover {
+    background-color: #249c41 !important;
+}
+.acoes-denuncia .btn-excluir:hover {
+    background-color: #c8231a !important;
+}
+.acoes-denuncia .btn-voltar:hover {
+    background-color: #5c5c5e !important;
 }
 
-.campo-info.tipo-lixo::before {
-    background: linear-gradient(45deg, #8e44ad, #9b59b6);
-}
-
-.campo-info.tipo-drenagem {
-    border-left-color: #3498db;
-}
-
-.campo-info.tipo-drenagem::before {
-    background: linear-gradient(45deg, #3498db, #2980b9);
-}
-
-.campo-info.tipo-arvore {
-    border-left-color: #27ae60;
-}
-
-.campo-info.tipo-arvore::before {
-    background: linear-gradient(45deg, #27ae60, #2ecc71);
-}
-
-/* Responsividade para detalhes */
 @media (max-width: 768px) {
     .denuncia-detalhes {
-        min-height: auto;
-        padding: 1rem;
+        padding: 1.5rem;
     }
-    .card-denuncia-completo {
-        margin: 0;
-    }
+    
     .header-detalhes {
-        padding: 1rem;
+        padding: 2rem 1.5rem;
     }
+    
     .header-detalhes h2 {
-        font-size: 1.1rem;
+        font-size: 1.5rem;
     }
+    
     .info-denuncia {
-        padding: 1rem;
+        padding: 2rem 1.5rem;
     }
+    
     .campo-info {
-        padding: 0.7rem;
-        margin-bottom: 0.7rem;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
     }
+    
     .acoes-denuncia {
-        padding: 1rem 1rem 0 1rem;
+        padding: 2rem 1.5rem;
         flex-direction: column;
         align-items: stretch;
+    }
+    
+    .acoes-denuncia .btn-editar,
+    .acoes-denuncia .btn-excluir,
+    .acoes-denuncia .btn-voltar {
+        width: 100%;
+        justify-content: center;
     }
 }
 
 @media (max-width: 480px) {
-    .header-detalhes {
+    .denuncia-detalhes {
         padding: 1rem;
+    }
+    
+    .header-detalhes {
+        padding: 1.5rem 1rem;
     }
     
     .header-detalhes h2 {
-        font-size: 1.3rem;
+        font-size: 1.25rem;
     }
     
     .info-denuncia {
-        padding: 1rem;
+        padding: 1.5rem 1rem;
     }
     
     .campo-info {
-        padding: 0.75rem;
+        padding: 1.25rem;
+        margin-bottom: 1.25rem;
     }
     
     .campo-info strong {
+        font-size: 0.8rem;
+    }
+    
+    .campo-info span {
         font-size: 1rem;
     }
     
-    .campo-info span, .campo-info p {
-        font-size: 0.9rem;
+    .campo-info p {
+        font-size: 0.95rem;
+    }
+    
+    .acoes-denuncia {
+        padding: 1.5rem 1rem;
     }
 }
 
-/* Animações específicas para detalhes */
-@keyframes slideInFromLeft {
+@keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateX(-30px);
+        transform: translateY(20px);
     }
     to {
         opacity: 1;
-        transform: translateX(0);
+        transform: translateY(0);
     }
 }
 
+.card-denuncia-completo {
+    animation: fadeInUp 0.6s ease-out;
+}
+
 .campo-info {
-    animation: slideInFromLeft 0.6s ease-out;
+    animation: fadeInUp 0.6s ease-out;
 }
 
 .campo-info:nth-child(1) { animation-delay: 0.1s; }
 .campo-info:nth-child(2) { animation-delay: 0.2s; }
-.campo-info:nth-child(3) { animation-delay: 0.3s; }
-.campo-info:nth-child(4) { animation-delay: 0.4s; }
-
-/* Efeito de destaque no hover */
-.card-denuncia-completo:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-    transition: all 0.3s ease;
-}
-
-/* Indicador de prioridade baseado no status */
-.campo-info.prioridade-alta {
-    border-left-color: #e74c3c;
-    background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
-}
-
-.campo-info.prioridade-media {
-    border-left-color: #f39c12;
-    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
-}
-
-.campo-info.prioridade-baixa {
-    border-left-color: #27ae60;
-    background: linear-gradient(135deg, #f0fff4 0%, #c6f6d5 100%);
-} 
+.campo-info:nth-child(3) { animation-delay: 0.3s; } 

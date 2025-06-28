@@ -20,6 +20,31 @@
     </header>
 
     <main>
+        <!-- Cards de Status -->
+        <section class="status-cards">
+            <div class="status-card em-analise">
+                <div class="status-icon">📋</div>
+                <div class="status-info">
+                    <h3>Em Análise</h3>
+                    <span class="status-count">{{contadores.get('em_analise', 0)}}</span>
+                </div>
+            </div>
+            <div class="status-card em-andamento">
+                <div class="status-icon">⚡</div>
+                <div class="status-info">
+                    <h3>Em Andamento</h3>
+                    <span class="status-count">{{contadores.get('em_andamento', 0)}}</span>
+                </div>
+            </div>
+            <div class="status-card resolvido">
+                <div class="status-icon">✅</div>
+                <div class="status-info">
+                    <h3>Resolvido</h3>
+                    <span class="status-count">{{contadores.get('resolvido', 0)}}</span>
+                </div>
+            </div>
+        </section>
+
         <section class="filtros">
             <h2>Filtrar Denúncias</h2>
             <div class="filtro-tipos">

@@ -44,7 +44,24 @@ class Application():
     
     def denuncias(self):
         todas_denuncias = self.models.read_all()
-        return template('app/views/html/denuncias', denuncias=todas_denuncias)
+        
+        # Contadores de status
+        contadores = {
+            'em_analise': 0,
+            'em_andamento': 0,
+            'resolvido': 0
+        }
+        
+        for denuncia in todas_denuncias:
+            # Normalizar status removendo acentos e espaços
+            status_normalizado = denuncia.status.lower()
+            status_normalizado = status_normalizado.replace(' ', '_')
+            status_normalizado = status_normalizado.replace('á', 'a').replace('ã', 'a')
+            
+            if status_normalizado in contadores:
+                contadores[status_normalizado] += 1
+        
+        return template('app/views/html/denuncias', denuncias=todas_denuncias, contadores=contadores)
     
     def nova_denuncia(self):
         return template('app/views/html/nova_denuncia')

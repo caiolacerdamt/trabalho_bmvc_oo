@@ -20,7 +20,7 @@ def helper(info= None):
 # Suas rotas aqui:
 @app.route('/denuncias', methods=['GET'])
 def denuncias():
-    return ctl.render('denuncias')
+    return ctl.denuncias()
 
 @app.route('/denuncias/nova')
 def nova_denuncia():

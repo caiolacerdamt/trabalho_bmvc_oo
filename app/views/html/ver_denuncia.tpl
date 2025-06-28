@@ -45,11 +45,11 @@
                 </div>
 
                 <div class="acoes-denuncia">
-                    <a href="/denuncias/{{denuncia.id}}/editar" class="btn-editar">Editar Denúncia</a>
+                    <a href="/denuncias/{{denuncia.id}}/editar" class="btn-editar">✏</a>
                     <form action="/denuncias/{{denuncia.id}}/excluir" method="POST" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir esta denúncia?')">
-                        <button type="submit" class="btn-excluir">Excluir Denúncia</button>
+                        <button type="submit" class="btn-excluir">🗑</button>
                     </form>
-                    <a href="/denuncias" class="btn-voltar">Voltar ao Feed</a>
+                    <a href="/denuncias" class="btn-voltar">↩</a>
                 </div>
             </div>
         </section>
