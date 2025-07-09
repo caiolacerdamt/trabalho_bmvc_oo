@@ -18,6 +18,11 @@ def helper(info= None):
 
 #-----------------------------------------------------------------------------
 # Suas rotas aqui:
+@app.route('/')
+def index():
+    autenticado = ctl.is_authenticated()
+    return ctl.render('index', autenticado=autenticado)
+
 @app.route('/denuncias', methods=['GET'])
 def denuncias():
     return ctl.denuncias()
@@ -47,7 +52,27 @@ def atualizar_denuncia(id):
 def excluir_denuncia(id):
     return ctl.render('excluir_denuncia', id)
 
+# Rotas de autenticação
+@app.route('/portal', method='GET')
+def portal():
+    return ctl.render('portal', erro=None)
 
+@app.route('/portal', method='POST')
+def action_portal():
+    username = request.forms.get('username')
+    password = request.forms.get('password')
+    session_id, username = ctl.authenticate_user(username, password)
+    if session_id:
+        response.set_cookie('session_id', session_id, httponly=True, secure=False, max_age=3600, path='/')
+        redirect(f'/denuncias')
+    else:
+        return template('app/views/html/portal', erro='Usuário ou senha inválidos!')
+
+@app.route('/logout', method='POST')
+def logout():
+    ctl.logout_user()
+    response.delete_cookie('session_id', path='/')
+    redirect('/portal')
 
 #-----------------------------------------------------------------------------
 

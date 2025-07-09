@@ -9,7 +9,10 @@
 </head>
 <body>
     <header>
-        <h1>Feed de Denúncias Urbanas</h1>
+        <h1>Denúncias</h1>
+        <form action="/logout" method="post" style="display:inline; float:right; margin-left: 20px;">
+            <button type="submit" class="btn-logout">Logout</button>
+        </form>
         <nav>
             <ul>
                 <li><a href="/">Página Inicial</a></li>
