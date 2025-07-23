@@ -28,6 +28,9 @@
                     <input value="Entrar" type="submit" class="btn-login" />
                 </div>
             </form>
+            <div style="text-align:center;margin-top:1.2rem;">
+                <a href="/cadastro" style="color:#2176ae;font-weight:600;text-decoration:none;">Criar nova conta</a>
+            </div>
         </div>
     </div>
 </body>

@@ -86,7 +86,8 @@ class Application():
         denuncia = self.models.read_by_id(id)
         if not denuncia:
             redirect('/denuncias')
-        return template('app/views/html/ver_denuncia', denuncia=denuncia)
+        usuario = self.get_current_user().username if self.get_current_user() else "Anônimo"
+        return template('app/views/html/ver_denuncia', denuncia=denuncia, usuario_atual=usuario)
     
     def editar_denuncia(self, id):
         if not self.is_authenticated():
@@ -94,16 +95,21 @@ class Application():
         denuncia = self.models.read_by_id(id)
         if not denuncia:
             redirect('/denuncias')
+        usuario = self.get_current_user().username if self.get_current_user() else None
+        if denuncia.usuario != usuario:
+            return redirect('/denuncias')
         return template('app/views/html/editar_denuncia', denuncia=denuncia)
     
     def criar_denuncia(self):
         if not self.is_authenticated():
             return redirect('/portal')
+        usuario = self.get_current_user().username if self.get_current_user() else None
         dados = {
             'titulo': request.forms.get('titulo'),
             'tipo': request.forms.get('tipo'),
             'descricao': request.forms.get('descricao'),
-            'endereco': request.forms.get('endereco')
+            'endereco': request.forms.get('endereco'),
+            'usuario': usuario
         }
         self.models.create(dados)
         redirect('/denuncias')
@@ -111,12 +117,17 @@ class Application():
     def atualizar_denuncia(self, id):
         if not self.is_authenticated():
             return redirect('/portal')
+        denuncia = self.models.read_by_id(id)
+        usuario = self.get_current_user().username if self.get_current_user() else None
+        if not denuncia or denuncia.usuario != usuario:
+            return redirect('/denuncias')
         dados = {
             'titulo': request.forms.get('titulo'),
             'tipo': request.forms.get('tipo'),
             'descricao': request.forms.get('descricao'),
             'endereco': request.forms.get('endereco'),
-            'status': request.forms.get('status')
+            'status': request.forms.get('status'),
+            'usuario': usuario
         }
         self.models.update(id, dados)
         redirect(f'/denuncias/{id}')
@@ -124,6 +135,10 @@ class Application():
     def excluir_denuncia(self, id):
         if not self.is_authenticated():
             return redirect('/portal')
+        denuncia = self.models.read_by_id(id)
+        usuario = self.get_current_user().username if self.get_current_user() else None
+        if not denuncia or denuncia.usuario != usuario:
+            return redirect('/denuncias')
         self.models.delete(id)
         redirect('/denuncias')
 

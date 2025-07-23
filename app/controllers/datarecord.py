@@ -52,9 +52,22 @@ class DataRecord():
         try:
             with open("app/controllers/db/denuncias.json", "r", encoding="utf-8") as arquivo_json:
                 data = json.load(arquivo_json)
-                self.denuncias = [Denuncia(**item) for item in data]
+                self.denuncias = [Denuncia(
+                    titulo=item['titulo'],
+                    tipo=item['tipo'],
+                    descricao=item['descricao'],
+                    endereco=item['endereco'],
+                    status=item.get('status', 'Em Análise'),
+                    id=item['id'],
+                    comentarios=item.get('comentarios', []),
+                    usuario=item.get('usuario')
+                ) for item in data]
                 if self.denuncias:
                     self.next_id = max([d.id for d in self.denuncias]) + 1
+            # Garante que todas as denúncias tenham o atributo comentarios
+            for d in self.denuncias:
+                if not hasattr(d, 'comentarios'):
+                    d.comentarios = []
         except FileNotFoundError:
             self.denuncias = []
             self.save_to_file()        
@@ -66,7 +79,8 @@ class DataRecord():
             descricao= dados['descricao'],
             endereco = dados['endereco'],
             status = dados.get('status', 'Em Análise'),
-            id = self.next_id
+            id = self.next_id,
+            usuario = dados.get('usuario')
         )
         self.denuncias.append(nova_denuncia)
         self.next_id += 1
@@ -108,7 +122,29 @@ class DataRecord():
                 'tipo': d.tipo,
                 'descricao': d.descricao,
                 'endereco': d.endereco,
-                'status': d.status
+                'status': d.status,
+                'comentarios': d.comentarios,
+                'usuario': d.usuario
             })
         with open("app/controllers/db/denuncias.json", "w", encoding="utf-8") as arquivo_json:
             json.dump(data, arquivo_json, indent=2, ensure_ascii=False)
+
+    def add_comentario(self, denuncia_id, comentario):
+        denuncia = self.read_by_id(denuncia_id)
+        if denuncia:
+            denuncia.comentarios.append(comentario)
+            self.save_to_file()
+
+    def remove_comentario(self, denuncia_id, comentario_id):
+        denuncia = self.read_by_id(denuncia_id)
+        if denuncia:
+            denuncia.comentarios = [c for c in denuncia.comentarios if c.get('id') != comentario_id]
+            self.save_to_file()
+
+    def create_user(self, username, password, email=None):
+        if any(u.username == username for u in self.__usuarios):
+            return False  # Usuário já existe
+        novo = UserAccount(username, password, email)
+        self.__usuarios.append(novo)
+        self.save_users()
+        return True
