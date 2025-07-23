@@ -5,7 +5,7 @@
     "tipo": "Buraco nas Ruas",
     "descricao": "Muitos buracos na EPTG causando acidentes.",
     "endereco": "EPTG",
-    "status": "Em AnÃ¡lise",
+    "status": "Resolvido",
     "comentarios": [],
     "usuario": "Caio"
   },
@@ -15,7 +15,7 @@
     "tipo": "IluminaÃ§Ã£o PÃºblica",
     "descricao": "Muito lixo acumulado impedindo o escoamento de liquido na rua das flores.  Alagando tudo. ",
     "endereco": "Rua das Flores, 123 - Centro",
-    "status": "Em AnÃ¡lise",
+    "status": "Em Andamento",
     "comentarios": [],
     "usuario": "Caio"
   },
@@ -38,5 +38,15 @@
     "status": "Em Análise",
     "comentarios": [],
     "usuario": "Caio"
+  },
+  {
+    "id": 5,
+    "titulo": "Agua acumulada",
+    "tipo": "IluminaÃ§Ã£o PÃºblica",
+    "descricao": "A agua nao esta escoando causando um problema enorme ",
+    "endereco": "guara 3 rua 7 bloco 8",
+    "status": "Em AnÃ¡lise",
+    "comentarios": [],
+    "usuario": "CAIO BICHA GAY"
   }
 ]

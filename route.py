@@ -56,6 +56,10 @@ def atualizar_denuncia(id):
 def excluir_denuncia(id):
     return ctl.render('excluir_denuncia', id)
 
+@app.route('/denuncias/<id:int>/alterar_status', method='POST')
+def alterar_status_denuncia(id):
+    return ctl.alterar_status_denuncia(id)
+
 # Rotas de autenticação
 @app.route('/portal', method='GET')
 def portal():

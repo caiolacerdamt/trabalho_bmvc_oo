@@ -148,18 +148,49 @@
     <main>
         <div class="detalhes-container">
             <div class="detalhes-header">
-                <h2><span style="margin-right:0.5em;">📢</span>{{denuncia.titulo}}</h2>
+                <h2><span class="icone-titulo">📢</span>{{denuncia.titulo}}</h2>
                 <div class="detalhes-status">
-                    <span class="status {{denuncia.status.lower().replace(' ', '-').replace('á', 'a').replace('ã', 'a')}}">{{denuncia.status}}</span>
+                    % if usuario_atual == 'admin':
+                        <form action="/denuncias/{{denuncia.id}}/alterar_status" method="post" style="display:inline-flex;align-items:center;gap:0.5em;">
+                            <select name="status" style="font-size:1.05em;padding:0.3em 0.8em;border-radius:8px;border:1.5px solid #2176ae;outline:none;">
+                                <option value="Em Análise" % if denuncia.status == 'Em Análise': %selected% endif %>Em Análise</option>
+                                <option value="Em Andamento" % if denuncia.status == 'Em Andamento': %selected% endif %>Em Andamento</option>
+                                <option value="Resolvido" % if denuncia.status == 'Resolvido': %selected% endif %>Resolvido</option>
+                            </select>
+                            <button type="submit" style="background:#2176ae;color:#fff;border:none;padding:0.3em 1em;border-radius:8px;font-weight:600;cursor:pointer;">Alterar</button>
+                        </form>
+                    % elif denuncia.status == 'Em Análise':
+                        <span class="status em-analise-destaque">
+                            <span class="icone-status">⏳</span> {{denuncia.status}}
+                        </span>
+                    % else:
+                        <span class="status {{denuncia.status.lower().replace(' ', '-').replace('á', 'a').replace('ã', 'a')}}">
+                            <span class="icone-status">
+                                % if denuncia.status == 'Em Andamento':
+                                    🚧
+                                % elif denuncia.status == 'Resolvido':
+                                    ✅
+                                % else:
+                                    📋
+                                % end
+                            </span> {{denuncia.status}}
+                        </span>
+                    % end
                 </div>
                 <div class="acoes">
                     % if denuncia.usuario == usuario_atual:
-                        <a href="/denuncias/{{denuncia.id}}/editar" class="btn-editar" title="Editar"><span>✏️</span></a>
+                        <a href="/denuncias/{{denuncia.id}}/editar" class="btn-editar" title="Editar">
+                            <span class="icone-acao">✏️</span>
+                        </a>
                         <form action="/denuncias/{{denuncia.id}}/excluir" method="POST" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir esta denúncia?')">
-                            <button type="submit" class="btn-excluir" title="Excluir">🗑️</button>
+                            <button type="submit" class="btn-excluir" title="Excluir">
+                                <span class="icone-acao">🗑️</span>
+                            </button>
                         </form>
                     % end
-                    <a href="/denuncias" class="btn-voltar" title="Voltar">↩️</a>
+                    <a href="/denuncias" class="btn-voltar" title="Voltar">
+                        <span class="icone-acao">↩️</span>
+                    </a>
                 </div>
             </div>
             <div class="detalhes-info">
