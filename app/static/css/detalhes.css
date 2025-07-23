@@ -160,6 +160,43 @@
     background-color: #5c5c5e !important;
 }
 
+.icone-titulo {
+    font-size: 2.1rem;
+    margin-right: 0.5em;
+    color: #2176ae;
+    vertical-align: middle;
+}
+.icone-status {
+    font-size: 1.2em;
+    margin-right: 0.4em;
+    color: #2176ae;
+    vertical-align: middle;
+}
+.icone-acao {
+    font-size: 1.2em;
+    color: #2176ae;
+    margin-right: 0.1em;
+    vertical-align: middle;
+    background: none;
+    box-shadow: none;
+}
+
+/* Destaque especial para o status 'Em Análise' */
+.status.em-analise-destaque {
+    background: none;
+    color: #ff9800;
+    border: 1.5px solid #ff9800;
+    font-size: 1.08rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-shadow: none;
+    padding: 0.5rem 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    box-shadow: none;
+}
+
 @media (max-width: 768px) {
     .denuncia-detalhes {
         padding: 1.5rem;

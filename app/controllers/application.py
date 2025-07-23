@@ -73,7 +73,8 @@ class Application():
             if status_normalizado in contadores:
                 contadores[status_normalizado] += 1
         
-        return template('app/views/html/denuncias', denuncias=todas_denuncias, contadores=contadores)
+        usuario = self.get_current_user().username if self.get_current_user() else None
+        return template('app/views/html/denuncias', denuncias=todas_denuncias, contadores=contadores, usuario_atual=usuario)
     
     def nova_denuncia(self):
         if not self.is_authenticated():
@@ -141,6 +142,22 @@ class Application():
             return redirect('/denuncias')
         self.models.delete(id)
         redirect('/denuncias')
+
+    def alterar_status_denuncia(self, id):
+        if not self.is_authenticated():
+            return redirect('/portal')
+        usuario = self.get_current_user().username if self.get_current_user() else None
+        if usuario != 'admin':
+            return redirect(f'/denuncias/{id}')
+        denuncia = self.models.read_by_id(id)
+        if not denuncia:
+            return redirect('/denuncias')
+        novo_status = request.forms.get('status')
+        if novo_status not in ['Em Análise', 'Em Andamento', 'Resolvido']:
+            return redirect(f'/denuncias/{id}')
+        denuncia.status = novo_status
+        self.models.save_to_file()
+        return redirect(f'/denuncias/{id}')
 
     def portal(self, erro=None):
         return template('app/views/html/portal', erro=erro)

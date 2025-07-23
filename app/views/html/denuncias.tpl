@@ -77,7 +77,9 @@
                         <span class="tipo">Tipo: {{denuncia.tipo}}</span>
                         <div class="acoes">
                             <a href="/denuncias/{{denuncia.id}}" class="btn-ver">Ver</a>
-                            <a href="/denuncias/{{denuncia.id}}/editar" class="btn-editar">Editar</a>
+                            % if denuncia.usuario == usuario_atual:
+                                <a href="/denuncias/{{denuncia.id}}/editar" class="btn-editar">Editar</a>
+                            % end
                         </div>
                     </div>
                 </div>
