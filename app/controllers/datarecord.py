@@ -60,19 +60,24 @@ class DataRecord():
                     status=item.get('status', 'Em Análise'),
                     id=item['id'],
                     comentarios=item.get('comentarios', []),
-                    usuario=item.get('usuario')
+                    usuario=item.get('usuario'),
+                    regiao_administrativa=item.get('regiao_administrativa', None)
                 ) for item in data]
                 if self.denuncias:
                     self.next_id = max([d.id for d in self.denuncias]) + 1
-            # Garante que todas as denúncias tenham o atributo comentarios
             for d in self.denuncias:
                 if not hasattr(d, 'comentarios'):
                     d.comentarios = []
+                if not hasattr(d, 'regiao_administrativa'):
+                    d.regiao_administrativa = None
         except FileNotFoundError:
             self.denuncias = []
-            self.save_to_file()        
+            self.save_to_file()
 
     def create(self, dados):
+        regiao = dados.get('regiao_administrativa')
+        if not regiao or regiao == '':
+            regiao = None
         nova_denuncia = Denuncia(
             titulo = dados['titulo'],
             tipo = dados['tipo'],
@@ -80,7 +85,8 @@ class DataRecord():
             endereco = dados['endereco'],
             status = dados.get('status', 'Em Análise'),
             id = self.next_id,
-            usuario = dados.get('usuario')
+            usuario = dados.get('usuario'),
+            regiao_administrativa = regiao
         )
         self.denuncias.append(nova_denuncia)
         self.next_id += 1
@@ -104,6 +110,7 @@ class DataRecord():
             denuncia.descricao = dados['descricao']
             denuncia.endereco = dados['endereco']
             denuncia.status = dados['status']
+            denuncia.regiao_administrativa = dados.get('regiao_administrativa')
             self.save_to_file()
             return denuncia
         return None
@@ -124,7 +131,8 @@ class DataRecord():
                 'endereco': d.endereco,
                 'status': d.status,
                 'comentarios': d.comentarios,
-                'usuario': d.usuario
+                'usuario': d.usuario,
+                'regiao_administrativa': getattr(d, 'regiao_administrativa', None)
             })
         with open("app/controllers/db/denuncias.json", "w", encoding="utf-8") as arquivo_json:
             json.dump(data, arquivo_json, indent=2, ensure_ascii=False)

@@ -57,24 +57,22 @@ class Application():
     def denuncias(self):
         if not self.is_authenticated():
             return redirect('/portal')
-        todas_denuncias = self.models.read_all()
-        
+        denuncias = self.models.read_all()
         contadores = {
             'em_analise': 0,
             'em_andamento': 0,
             'resolvido': 0
         }
-        
-        for denuncia in todas_denuncias:
-            status_normalizado = denuncia.status.lower()
-            #status_normalizado = status_normalizado.replace(' ', '_')
-            #status_normalizado = status_normalizado.replace('á', 'a').replace('ã', 'a')
-            
-            if status_normalizado in contadores:
-                contadores[status_normalizado] += 1
-        
-        usuario = self.get_current_user().username if self.get_current_user() else None
-        return template('app/views/html/denuncias', denuncias=todas_denuncias, contadores=contadores, usuario_atual=usuario)
+        for d in denuncias:
+            status = d.status.strip().lower()
+            if status in ['em análise', 'em analise']:
+                contadores['em_analise'] += 1
+            elif status == 'em andamento':
+                contadores['em_andamento'] += 1
+            elif status in ['resolvido', 'resolvida']:
+                contadores['resolvido'] += 1
+        usuario_atual = self.get_current_user().username if self.get_current_user() else None
+        return template('app/views/html/denuncias', denuncias=denuncias, contadores=contadores, usuario_atual=usuario_atual)
     
     def nova_denuncia(self):
         if not self.is_authenticated():
@@ -110,7 +108,8 @@ class Application():
             'tipo': request.forms.get('tipo'),
             'descricao': request.forms.get('descricao'),
             'endereco': request.forms.get('endereco'),
-            'usuario': usuario
+            'usuario': usuario,
+            'regiao_administrativa': request.forms.get('regiao_administrativa')
         }
         self.models.create(dados)
         redirect('/denuncias')
@@ -128,7 +127,8 @@ class Application():
             'descricao': request.forms.get('descricao'),
             'endereco': request.forms.get('endereco'),
             'status': request.forms.get('status'),
-            'usuario': usuario
+            'usuario': usuario,
+            'regiao_administrativa': request.forms.get('regiao_administrativa')
         }
         self.models.update(id, dados)
         redirect(f'/denuncias/{id}')

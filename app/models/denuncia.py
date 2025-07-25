@@ -1,5 +1,5 @@
 class Denuncia():
-    def __init__(self, titulo, tipo, descricao, endereco, status="Em Análise", id=None, comentarios=None, usuario=None):
+    def __init__(self, titulo, tipo, descricao, endereco, status="Em Análise", id=None, comentarios=None, usuario=None, regiao_administrativa=None):
         self.id = id
         self.titulo = titulo
         self.tipo = tipo
@@ -7,6 +7,7 @@ class Denuncia():
         self.endereco = endereco
         self.status = status
         self.usuario = usuario
+        self.regiao_administrativa = regiao_administrativa
         # Garante que sempre exista o atributo comentarios
         if comentarios is None:
             self.comentarios = []

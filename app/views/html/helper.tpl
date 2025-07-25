@@ -12,6 +12,19 @@
 
 <body>
 
+    <header>
+        <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; flex-wrap: wrap; gap: 1rem;">
+            <h1 style="margin: 0;">Ajuda</h1>
+            <nav style="flex: 1;">
+                <ul style="display: flex; gap: 1.5rem; align-items: center; margin: 0; padding: 0; list-style: none; flex-wrap: wrap;">
+                    <li><a href="/">Página Inicial</a></li>
+                    <li><a href="/denuncias">Denúncias</a></li>
+                    <li><a href="/denuncias/nova">Nova Denúncia</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
     <div class= "object_centered">
       <h1>Seja bem-vindo ao BMVC! (Bottle Powered)</h1>
       <h4>Estrutura desenvolvida para oferecer suporte ao desenvolvimento FullStack da disciplina de Orientação a Objetos.</h4>

@@ -9,17 +9,19 @@
 </head>
 <body>
     <header>
-        <h1>Denúncias</h1>
-        <form action="/logout" method="post" style="display:inline; float:right; margin-left: 20px;">
-            <button type="submit" class="btn-logout">Logout</button>
-        </form>
-        <nav>
-            <ul>
-                <li><a href="/">Página Inicial</a></li>
-                <li><a href="/denuncias">Denúncias</a></li>
-                <li><a href="/denuncias/nova">Nova Denúncia</a></li>
-            </ul>
-        </nav>
+        <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; flex-wrap: wrap; gap: 1rem;">
+            <h1 style="margin: 0;">Denúncias</h1>
+            <nav style="flex: 1;">
+                <ul style="display: flex; gap: 1.5rem; align-items: center; margin: 0; padding: 0; list-style: none; flex-wrap: wrap;">
+                    <li><a href="/">Página Inicial</a></li>
+                    <li><a href="/denuncias">Denúncias</a></li>
+                    <li><a href="/denuncias/nova">Nova Denúncia</a></li>
+                </ul>
+            </nav>
+            <form action="/logout" method="post" style="margin: 0;">
+                <button type="submit" class="btn-logout">Logout</button>
+            </form>
+        </div>
     </header>
 
     <main>
@@ -48,17 +50,53 @@
             </div>
         </section>
 
-        <section class="filtros">
-            <h2>Filtrar Denúncias</h2>
-            <div class="filtro-tipos">
+        <section class="filtros" style="display: flex; flex-wrap: wrap; gap: 2rem; align-items: flex-end; justify-content: center; margin-bottom: 2.5rem;">
+            <div class="filtro-tipos" style="flex:1; min-width:220px; max-width:320px;">
                 <label for="filtro-tipo">Tipo de Denúncia:</label>
-                <select id="filtro-tipo">
+                <select id="filtro-tipo" style="width:100%; margin-top:0.3rem;">
                     <option value="todos">Todos os tipos</option>
                     <option value="Iluminação Pública">Iluminação Pública</option>
                     <option value="Buraco nas Ruas">Buraco nas Ruas</option>
                     <option value="Coleta de Lixo">Coleta de Lixo</option>
                     <option value="Problemas de Drenagem">Problemas de Drenagem</option>
                     <option value="Árvores em Risco">Árvores em Risco</option>
+                </select>
+            </div>
+            <div class="filtro-regiao" style="flex:1; min-width:220px; max-width:320px;">
+                <label for="filtro-regiao">Região Administrativa:</label>
+                <select id="filtro-regiao" style="width:100%; margin-top:0.3rem;">
+                    <option value="todas">Todas as regiões</option>
+                    <option value="Águas Claras">Águas Claras</option>
+                    <option value="Brazlândia">Brazlândia</option>
+                    <option value="Candangolândia">Candangolândia</option>
+                    <option value="Ceilândia">Ceilândia</option>
+                    <option value="Cruzeiro">Cruzeiro</option>
+                    <option value="Fercal">Fercal</option>
+                    <option value="Gama">Gama</option>
+                    <option value="Guará">Guará</option>
+                    <option value="Itapoã">Itapoã</option>
+                    <option value="Jardim Botânico">Jardim Botânico</option>
+                    <option value="Lago Norte">Lago Norte</option>
+                    <option value="Lago Sul">Lago Sul</option>
+                    <option value="Núcleo Bandeirante">Núcleo Bandeirante</option>
+                    <option value="Paranoá">Paranoá</option>
+                    <option value="Park Way">Park Way</option>
+                    <option value="Planaltina">Planaltina</option>
+                    <option value="Plano Piloto">Plano Piloto</option>
+                    <option value="Recanto das Emas">Recanto das Emas</option>
+                    <option value="Riacho Fundo">Riacho Fundo</option>
+                    <option value="Riacho Fundo II">Riacho Fundo II</option>
+                    <option value="Samambaia">Samambaia</option>
+                    <option value="Santa Maria">Santa Maria</option>
+                    <option value="São Sebastião">São Sebastião</option>
+                    <option value="SCIA/Estrutural">SCIA/Estrutural</option>
+                    <option value="SIA">SIA</option>
+                    <option value="Sobradinho">Sobradinho</option>
+                    <option value="Sobradinho II">Sobradinho II</option>
+                    <option value="Sudoeste/Octogonal">Sudoeste/Octogonal</option>
+                    <option value="Taguatinga">Taguatinga</option>
+                    <option value="Varjão">Varjão</option>
+                    <option value="Vicente Pires">Vicente Pires</option>
                 </select>
             </div>
         </section>
@@ -71,6 +109,7 @@
                     <span class="status {{denuncia.status.lower().replace(' ', '-').replace('á', 'a').replace('ã', 'a')}}">{{denuncia.status}}</span>
                 </div>
                 <div class="card-body">
+                    <p class="regiao-adm" style="color:#2176ae; font-weight:600; margin-bottom:0.5rem;">{{denuncia.regiao_administrativa or 'Região não informada'}}</p>
                     <p class="endereco">{{denuncia.endereco}}</p>
                     <p class="descricao">{{denuncia.descricao}}</p>
                     <div class="card-footer">

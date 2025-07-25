@@ -113,15 +113,20 @@
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     border: 1px solid #f0f0f0;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: none;
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    min-height: 340px;
+    max-height: 340px;
+    height: 340px;
 }
 
 .card-denuncia:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    /* Nenhum efeito de hover */
+    transform: none !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+    background: #fff !important;
 }
 
 .card-header {
@@ -131,6 +136,7 @@
     justify-content: space-between;
     align-items: flex-start;
     gap: 1rem;
+    min-height: 60px;
 }
 
 .card-header h3 {
@@ -179,7 +185,11 @@
 
 .card-body {
     padding: 1rem 1.5rem;
-    flex: 1;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: hidden;
 }
 
 .endereco {
@@ -190,6 +200,9 @@
     background: #f9fafb;
     border-radius: 6px;
     border-left: 3px solid #3b82f6;
+    min-height: 32px;
+    display: flex;
+    align-items: center;
 }
 
 .descricao {
@@ -197,6 +210,13 @@
     color: #4b5563;
     font-size: 0.95rem;
     line-height: 1.5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    max-height: 5.8em;
+    min-height: 5.8em;
 }
 
 .card-footer {
@@ -207,17 +227,21 @@
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
+    margin-top: auto;
+    min-height: 56px;
 }
 
 .tipo {
     font-size: 0.9rem;
     color: #6b7280;
     font-weight: 500;
+    white-space: pre-line;
 }
 
 .acoes {
     display: flex;
     gap: 0.5rem;
+    align-items: center;
 }
 
 .btn-ver, .btn-editar, .btn-criar, .btn-atualizar, .btn-cancelar, .btn-excluir, .btn-voltar {

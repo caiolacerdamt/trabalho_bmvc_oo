@@ -136,14 +136,19 @@
 </head>
 <body>
     <header>
-        <h1>Detalhes da Denúncia</h1>
-        <nav>
-            <ul>
-                <li><a href="/">Página Inicial</a></li>
-                <li><a href="/denuncias">Denúncias</a></li>
-                <li><a href="/denuncias/nova">Nova Denúncia</a></li>
-            </ul>
-        </nav>
+        <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; flex-wrap: wrap; gap: 1rem;">
+            <h1 style="margin: 0;">Detalhes da Denúncia</h1>
+            <nav style="flex: 1;">
+                <ul style="display: flex; gap: 1.5rem; align-items: center; margin: 0; padding: 0; list-style: none; flex-wrap: wrap;">
+                    <li><a href="/">Página Inicial</a></li>
+                    <li><a href="/denuncias">Denúncias</a></li>
+                    <li><a href="/denuncias/nova">Nova Denúncia</a></li>
+                </ul>
+            </nav>
+            <form action="/logout" method="post" style="margin: 0;">
+                <button type="submit" class="btn-logout">Logout</button>
+            </form>
+        </div>
     </header>
     <main>
         <div class="detalhes-container">
@@ -179,17 +184,17 @@
                 </div>
                 <div class="acoes">
                     % if denuncia.usuario == usuario_atual:
-                        <a href="/denuncias/{{denuncia.id}}/editar" class="btn-editar" title="Editar">
-                            <span class="icone-acao">✏️</span>
+                        <a href="/denuncias/{{denuncia.id}}/editar" class="btn-editar" title="Editar" style="background:transparent;box-shadow:none;border:none;width:auto;height:auto;padding:0 6px;">
+                            <span class="icone-acao" style="font-size:2rem;filter:drop-shadow(0 1px 2px #2176ae22);">✏️</span>
                         </a>
                         <form action="/denuncias/{{denuncia.id}}/excluir" method="POST" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir esta denúncia?')">
-                            <button type="submit" class="btn-excluir" title="Excluir">
-                                <span class="icone-acao">🗑️</span>
+                            <button type="submit" class="btn-excluir" title="Excluir" style="background:transparent;box-shadow:none;border:none;width:auto;height:auto;padding:0 6px;">
+                                <span class="icone-acao" style="font-size:2rem;filter:drop-shadow(0 1px 2px #e74c3c22);">🗑️</span>
                             </button>
                         </form>
                     % end
-                    <a href="/denuncias" class="btn-voltar" title="Voltar">
-                        <span class="icone-acao">↩️</span>
+                    <a href="/denuncias" class="btn-voltar" title="Voltar" style="background:transparent;box-shadow:none;border:none;width:auto;height:auto;padding:0 6px;">
+                        <span class="icone-acao" style="font-size:2rem;filter:drop-shadow(0 1px 2px #2176ae22);">↩️</span>
                     </a>
                 </div>
             </div>
@@ -201,6 +206,10 @@
                 <div class="info-card">
                     <strong>Endereço</strong>
                     <span>📍 {{denuncia.endereco}}</span>
+                </div>
+                <div class="info-card">
+                    <strong>Região Administrativa</strong>
+                    <span>🏛️ {{denuncia.regiao_administrativa or 'Região não informada'}}</span>
                 </div>
                 <div class="info-card" style="grid-column:1/-1;">
                     <strong>Descrição</strong>

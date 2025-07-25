@@ -8,6 +8,18 @@
     <link rel="stylesheet" href="/static/css/portal.css">
 </head>
 <body>
+    <header>
+        <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; flex-wrap: wrap; gap: 1rem;">
+            <h1 style="margin: 0;">Cadastro</h1>
+            <nav style="flex: 1;">
+                <ul style="display: flex; gap: 1.5rem; align-items: center; margin: 0; padding: 0; list-style: none; flex-wrap: wrap;">
+                    <li><a href="/">Página Inicial</a></li>
+                    <li><a href="/denuncias">Denúncias</a></li>
+                    <li><a href="/denuncias/nova">Nova Denúncia</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
     <div class="login-container">
         <div class="login-box">
             <h1>Crie sua conta</h1>

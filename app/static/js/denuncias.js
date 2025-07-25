@@ -2,6 +2,7 @@ console.log('JavaScript carregado!');
 
 document.addEventListener('DOMContentLoaded', function() {
     const filtroTipo = document.getElementById('filtro-tipo');
+    const filtroRegiao = document.getElementById('filtro-regiao');
     const cards = document.querySelectorAll('.card-denuncia');
     const feedDenuncias = document.querySelector('.feed-denuncias');
 
@@ -20,14 +21,23 @@ document.addEventListener('DOMContentLoaded', function() {
     mensagemNenhumaDenuncia.textContent = 'Nenhuma denúncia encontrada para este tipo.';
     feedDenuncias.appendChild(mensagemNenhumaDenuncia);
 
-    filtroTipo.addEventListener('change', function() {
-        const tipoSelecionado = this.value;
+    filtroTipo.addEventListener('change', filtrarDenuncias);
+    if (filtroRegiao) filtroRegiao.addEventListener('change', filtrarDenuncias);
+
+    function normalizarTexto(txt) {
+        return txt ? txt.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase().trim() : '';
+    }
+
+    function filtrarDenuncias() {
+        const tipoSelecionado = filtroTipo.value;
+        const regiaoSelecionada = filtroRegiao ? filtroRegiao.value : 'todas';
         let denunciasVisiveis = 0;
-        
         cards.forEach(card => {
             const tipoDenuncia = card.querySelector('.tipo').textContent.split(': ')[1];
-            
-            if (tipoSelecionado === 'todos' || tipoDenuncia === tipoSelecionado) {
+            const regiaoDenuncia = card.querySelector('.regiao-adm') ? card.querySelector('.regiao-adm').textContent.trim() : '';
+            const tipoOk = (tipoSelecionado === 'todos' || tipoDenuncia === tipoSelecionado);
+            const regiaoOk = (regiaoSelecionada === 'todas' || normalizarTexto(regiaoDenuncia) === normalizarTexto(regiaoSelecionada));
+            if (tipoOk && regiaoOk) {
                 card.style.display = 'block';
                 card.style.animation = 'fadeIn 0.5s ease-out';
                 denunciasVisiveis++;
@@ -35,13 +45,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 card.style.display = 'none';
             }
         });
-
         if (denunciasVisiveis === 0) {
             mensagemNenhumaDenuncia.style.display = 'block';
         } else {
             mensagemNenhumaDenuncia.style.display = 'none';
         }
-    });
+    }
 
     const observerOptions = {
         threshold: 0.1,
