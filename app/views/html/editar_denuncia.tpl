@@ -54,16 +54,6 @@
                 </div>
 
                 <div class="campo">
-                    <label for="endereco">Endereço:</label>
-                    <input type="text" id="endereco" name="endereco" value="{{denuncia.endereco}}" required>
-                </div>
-
-                <div class="campo">
-                    <label for="descricao">Descrição:</label>
-                    <textarea id="descricao" name="descricao" rows="4" required>{{denuncia.descricao}}</textarea>
-                </div>
-
-                <div class="campo">
                     <label for="regiao_administrativa">Região Administrativa:</label>
                     <select id="regiao_administrativa" name="regiao_administrativa" required style="margin-bottom:1rem;">
                         <option value="">Selecione...</option>
@@ -99,6 +89,16 @@
                         <option value="Varjão" % if denuncia.regiao_administrativa == 'Varjão': %selected% endif %>Varjão</option>
                         <option value="Vicente Pires" % if denuncia.regiao_administrativa == 'Vicente Pires': %selected% endif %>Vicente Pires</option>
                     </select>
+                </div>
+
+                <div class="campo">
+                    <label for="endereco">Endereço:</label>
+                    <input type="text" id="endereco" name="endereco" value="{{denuncia.endereco}}" required>
+                </div>
+
+                <div class="campo">
+                    <label for="descricao">Descrição:</label>
+                    <textarea id="descricao" name="descricao" rows="4" required>{{denuncia.descricao}}</textarea>
                 </div>
 
                 <div class="acoes">

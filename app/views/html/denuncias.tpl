@@ -50,10 +50,10 @@
             </div>
         </section>
 
-        <section class="filtros" style="display: flex; flex-wrap: wrap; gap: 2rem; align-items: flex-end; justify-content: center; margin-bottom: 2.5rem;">
-            <div class="filtro-tipos" style="flex:1; min-width:220px; max-width:320px;">
+        <section class="filtros">
+            <div class="filtro-tipos filtro-box">
                 <label for="filtro-tipo">Tipo de Denúncia:</label>
-                <select id="filtro-tipo" style="width:100%; margin-top:0.3rem;">
+                <select id="filtro-tipo" class="filtro-select">
                     <option value="todos">Todos os tipos</option>
                     <option value="Iluminação Pública">Iluminação Pública</option>
                     <option value="Buraco nas Ruas">Buraco nas Ruas</option>
@@ -62,9 +62,9 @@
                     <option value="Árvores em Risco">Árvores em Risco</option>
                 </select>
             </div>
-            <div class="filtro-regiao" style="flex:1; min-width:220px; max-width:320px;">
+            <div class="filtro-regiao filtro-box">
                 <label for="filtro-regiao">Região Administrativa:</label>
-                <select id="filtro-regiao" style="width:100%; margin-top:0.3rem;">
+                <select id="filtro-regiao" class="filtro-select">
                     <option value="todas">Todas as regiões</option>
                     <option value="Águas Claras">Águas Claras</option>
                     <option value="Brazlândia">Brazlândia</option>
